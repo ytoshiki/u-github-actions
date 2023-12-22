@@ -23,6 +23,6 @@ jobs:
             - name: echo a string 
               run: Write-Output "Windows String"
             - name: error steps 
-              run : sdklfjsd
-
+              run : sdklfjsdkk
+              
         
