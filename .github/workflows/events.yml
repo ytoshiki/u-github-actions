@@ -1,18 +1,26 @@
 name: Repository event
-on: 
-    push: 
-    pull_request: 
-        types: [opened, assigned]
-    issues: 
-        types: [opened]
+on:
+  push:
+    branches:
+      - main
+      - "feature/*"
+      - "!feature/featA" # ignore specific pattern, order matters
+    tags:
+      - v1.* # match v1.1, v1.1.2
+    paths: # files
+      - "**.js"
+      - "!app.js"
+  pull_request:
+    types: [opened, assigned]
+  issues:
+    types: [opened]
 
-jobs: 
-    checkout: 
-        runs-on: ubuntu-latest
-        steps: 
-            - run: | 
-                echo $GITHUB_SHA 
-                echo $GITHUB_REF
-            - name: Checkout
-              uses: actions/checkout@v4.1.1
-        
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $GITHUB_SHA 
+          echo $GITHUB_REF
+      - name: Checkout
+        uses: actions/checkout@v4.1.1

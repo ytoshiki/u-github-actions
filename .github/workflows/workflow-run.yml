@@ -1,11 +1,13 @@
 name: Workflow Run
-on: 
-    workflow_run: 
-        workflows: [Repository event]
-        types: [completed]
-    
-jobs: 
-    echo-string: 
-        runs-on: ubuntu-latest
-        steps: 
-            - run: echo "hey hey hey"
+on:
+  workflow_run:
+    workflows: [Repository event]
+    types: [completed]
+    branches:
+      - main
+
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hey hey hey"
